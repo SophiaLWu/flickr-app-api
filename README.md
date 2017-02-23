@@ -1,4 +1,4 @@
-# Photo Food App
+# Photo Feed App
 
 This is a simple photo feed app that uses the Flickr API.
 
