@@ -1,0 +1,24 @@
+<h1>Photo Stream</h1>
+
+<%= form_tag("/", :method => :get) do %>
+  <%= text_field_tag :user_id, params[:user_id] %>
+  <%= submit_tag "Display photos" %>
+<% end %>
+
+<% if @photos && @photos.any? %>
+  <div class="flickr">
+    <ul>
+      <% @photos.each do |row| -%>
+        <li>
+          <% row.each do |photo| %>
+            <% info = flickr.photos.getInfo(:photo_id => "#{photo}") %>
+            <%= link_to(image_tag(FlickRaw.url_s(info),
+                        :class => "flickr_photo", :title => photo["title"],
+                        :border => 0, :size => "75x75"), FlickRaw.url(info)) %>
+          <% end %>
+        </li>
+      <% end -%>
+    </ul>
+  </div>
+
+<% end %>
